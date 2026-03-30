@@ -49,9 +49,13 @@ export function activate(context: vscode.ExtensionContext) {
         // Create subdirectories
         const promptsPath = path.join(adminLocalPath, 'prompts');
         const scriptsPath = path.join(adminLocalPath, 'scripts');
+        const docsPath = path.join(adminLocalPath, 'docs');
+        const keyStorePath = path.join(adminLocalPath, 'key-store');
         
         fs.mkdirSync(promptsPath, { recursive: true });
         fs.mkdirSync(scriptsPath, { recursive: true });
+        fs.mkdirSync(docsPath, { recursive: true });
+        fs.mkdirSync(keyStorePath, { recursive: true });
         
         // Create .ai.store file
         const aiStorePath = path.join(adminLocalPath, '.ai.store');
@@ -78,67 +82,110 @@ MAX_TOKENS=2000
         
         // Create welcome README
         const welcomeFile = path.join(adminLocalPath, 'README.md');
-        const welcomeContent = `# Welcome to .admin-local
+        const welcomeContent = `# .admin-local
 
-Your **local-only** workspace for AI tools, prompts, and sensitive files.
+**Local-only workspace for AI development**
 
-## 📁 Folder Structure
+## Folder Structure
 
 \`\`\`
 .admin-local/
-  ├── .env.ai           # AI API keys and configuration
-  ├── prompts/          # Your reusable AI prompts
-  ├── scripts/          # Helper scripts and automation
-  └── README.md         # This file
+  ├── README.md
+  ├── .ai.store
+  ├── docs/
+  ├── key-store/
+  ├── prompts/
+  └── scripts/
 \`\`\`
 
-## 🔑 AI Keys (.ai.store)
+## .ai.store
 
-Store your AI API keys safely. This file is **never committed** to Git.
+AI API keys and configuration. Never committed to Git.
 
-Supported services:
-- OpenAI (ChatGPT, GPT-4)
-- Anthropic (Claude)
-- Google (Gemini)
-- Cohere, HuggingFace, and more
+## docs/
 
-## 💡 Prompts Folder
+Planning documents and task lists for AI/LLM coordination.
 
-Save your best prompts for easy reuse:
-- System prompts
-- Task templates
-- Few-shot examples
-- Custom instructions
+## key-store/
 
-**Tip**: Drag prompts directly into VS Code Chat!
+Secure storage for credentials, tokens, and connection strings.
 
-## 🛠️ Scripts Folder
+## prompts/
 
-Store local automation and helper scripts:
-- Shell scripts for AWS/Docker
-- Database access scripts
-- API testing utilities
-- Build automation
+Reusable AI prompts and templates.
 
-## 🔒 Security
+## scripts/
 
-This folder uses \`.git/info/exclude\` (local-only ignore):
-
-✅ Never committed to Git  
-✅ Safe for API keys and secrets  
-✅ No impact on team members  
-✅ Portable with Export/Import
+Automation scripts and utilities.
 
 ---
 
-**Admin Local** - Secure AI workflows for developers  
-Created by Shaun Allen Pritchard
+**Security**: Uses \`.git/info/exclude\` - impossible to commit.
 `;
         
         fs.writeFileSync(welcomeFile, welcomeContent, 'utf8');
         
+        // Create INFO.md files for each folder
+        const promptsInfo = path.join(promptsPath, 'INFO.md');
+        const promptsInfoContent = `# 💡 Prompts
+
+Reusable AI prompts and templates for development workflows.
+
+**Right-click → (.Admin-Local) Copy Prompt to Clipboard**
+
+Paste directly into VS Code Chat (Ctrl+V) to use your custom prompts.
+`;
+        fs.writeFileSync(promptsInfo, promptsInfoContent, 'utf8');
+
+        const scriptsInfo = path.join(scriptsPath, 'INFO.md');
+        const scriptsInfoContent = `# 📦 Scripts
+
+Toolbox for developers.
+
+## Contents
+
+- 🔧 **Shell Scripts** - Automation and utility commands
+- 🔌 **Connection Scripts** - API and service integrations
+- 📋 **Tool Scripts** - Developer utilities and helpers
+
+**Note:** This folder is excluded from version control to maintain local-only configurations.
+`;
+        fs.writeFileSync(scriptsInfo, scriptsInfoContent, 'utf8');
+
+        const docsInfo = path.join(docsPath, 'INFO.md');
+        const docsInfoContent = `# 📋 Planning & Documentation
+
+This folder contains planning documents and task lists used by AI/LLM agents to coordinate and execute tasks.
+
+## Contents
+
+- 📝 **Task Lists** - Structured task definitions and execution plans
+- 🎯 **Planning Docs** - Strategy, workflows, and project organization
+- 🔑 **Configuration** - API keys, prompts, and environment settings
+- 📦 **Scripts** - Automation and utility scripts
+
+Use this modular structure to maintain clean separation of concerns while enabling collaborative AI planning and execution.
+`;
+        fs.writeFileSync(docsInfo, docsInfoContent, 'utf8');
+
+        const keyStoreInfo = path.join(keyStorePath, 'INFO.md');
+        const keyStoreInfoContent = `# 🔐 Key Store
+
+Secure storage for sensitive credentials and access tokens used during development.
+
+**Contents:**
+- API keys and tokens
+- Database connection strings
+- Authentication credentials
+- Environment variables
+- Access passwords
+
+> ⚠️ **This will never get committed**
+`;
+        fs.writeFileSync(keyStoreInfo, keyStoreInfoContent, 'utf8');
+        
         // Create example prompt
-        const examplePrompt = path.join(promptsPath, 'example-code-review.md');
+        const examplePrompt = path.join(promptsPath, 'prompt_exe.md');
         const exampleContent = `# Code Review Prompt
 
 You are an expert code reviewer. Analyze the provided code and give feedback on:

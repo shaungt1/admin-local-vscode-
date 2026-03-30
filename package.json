@@ -3,7 +3,7 @@
   "displayName": "Admin Local",
   "description": "Portable AI toolkit - Export/import API keys, prompts & scripts between projects. Never commit secrets to Git.",
   "version": "0.0.1",
-  "publisher": "frontside",
+  "publisher": "shaun.pritchard",
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.109.0"
@@ -64,23 +64,23 @@
       "explorer/context": [
         {
           "command": "admin-local.init",
-          "group": "adminlocal@1"
+          "group": "2_adminlocal@1"
         },
         {
           "command": "admin-local.delete",
-          "group": "adminlocal@2"
+          "group": "2_adminlocal@2"
         },
         {
           "command": "admin-local.export",
-          "group": "adminlocal@3"
+          "group": "2_adminlocal@3"
         },
         {
           "command": "admin-local.import",
-          "group": "adminlocal@4"
+          "group": "2_adminlocal@4"
         },
         {
           "command": "admin-local.copyPrompt",
-          "group": "adminlocal@5"
+          "group": "2_adminlocal@5"
         }
       ],
       "commandPalette": [

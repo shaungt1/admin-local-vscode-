@@ -8,6 +8,5 @@ node_modules
 .eslintrc.json
 **/*.map
 **/*.ts
-img
+img/designs
 create_icon.html
-icon-512.png
