@@ -1,150 +1,165 @@
 # Admin Local
 
-A VS Code extension that creates a local-only `.admin-local` folder in your Git repository and ensures it's ignored using `.git/info/exclude`.
+> **Your AI toolkit travels with you** - One-click portable workspace for API keys, prompts, and dev tools across all your projects.
 
-## What is Admin Local?
+[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/your-username/admin-local-vscode)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**Admin Local** is a local-only folder inside a project used to store sensitive or personal development files that must never be committed to Git.
+## 🚀 Start New Projects in Seconds
 
-### How it works
+Stop wasting time copying API keys, hunting for that perfect prompt, or recreating scripts. **Admin Local** lets you **export your entire AI workflow** from one project and **import it into any other** - instantly.
 
-The extension:
-1. Creates a `.admin-local/` folder in your workspace root
-2. Adds `.admin-local/` to `.git/info/exclude` (a Git ignore file that exists only on your machine)
-3. Never modifies `.gitignore` - the ignore rule stays local to your repository clone
+### The Problem
+Starting a new project means:
+- ❌ Searching for API keys in old projects
+- ❌ Copy-pasting prompts from Notion/docs
+- ❌ Recreating helper scripts you already wrote
+- ❌ Losing 15-30 minutes on setup every time
 
-### What to use it for
+### The Solution
+**Admin Local** creates a `.admin-local` folder in each project with:
+- 🔑 **AI API Keys** - OpenAI, Anthropic, Gemini (never committed to Git)
+- 💡 **Prompt Library** - Your best prompts, ready to drag into VS Code Chat
+- 📜 **Scripts & Tools** - AWS scripts, DB helpers, automation
+- 📦 **One-Click Export/Import** - Move your entire toolkit between projects
 
-- **API keys, tokens, credentials** - Keep secrets local without risk
-- **Local scripts and tooling** - Machine-specific utilities
-- **Test data or scratch files** - Experimental data that shouldn't be shared
-- **Machine-specific configs** - Personal development settings
-- **Debugging artifacts** - Logs, dumps, profiling data
+![Admin Local Structure](img/admin-local.png)
 
-### Key Benefits
+## ✨ Features
 
-✅ **Local-only ignore** - Unlike `.gitignore`, this affects only your machine  
-✅ **Zero team impact** - Other developers won't see or be affected by your ignore rules  
-✅ **Safe by design** - Impossible to accidentally commit sensitive files  
-✅ **One-click setup** - No manual Git configuration needed
+### � **Export/Import Archives** (The Game Changer)
+**The reason this extension exists:** Move your workflow between projects effortlessly.
 
-## Usage
-
-### Initialize Admin Local
-
-1. Open a Git repository in VS Code
-2. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac)
-3. Run the command: **Admin Local: Initialize**
-4. Done! The `.admin-local` folder is created and ignored
-
-### What happens when you run the command
-
+**Export** from a finished project:
 ```
-✓ Creates .admin-local/ folder in workspace root
-✓ Creates .git/info/ directory if it doesn't exist
-✓ Creates .git/info/exclude file if it doesn't exist
-✓ Adds .admin-local/ entry to .git/info/exclude
-✓ Verifies the setup is correct
+Right-click → Admin Local: Export Archive
+→ Saves: project-name-admin-local-2026-03-30T12-30-45.admloc
 ```
 
-If `.admin-local` already exists, the extension will ensure it's properly ignored without recreating it.
+**Import** into a new project:
+```
+Right-click → Admin Local: Import Archive
+→ Select your .admloc file
+→ Done! All keys, prompts, scripts restored
+```
 
-## Requirements
+**Real-world workflow:**
+1. Finish a TypeScript project with AI features
+2. Export your .admin-local (API keys, prompts, scripts)
+3. Start a new Python project tomorrow
+4. Import → Instant access to all your AI tools
+5. **Save 30 minutes of setup**
 
-- **Git repository** - Your workspace must be a Git repository
-- **VS Code** - Version 1.109.0 or higher
-- **Git installed** - Git must be available in your environment
+### 🔒 **Git-Safe Storage**
+Uses `.git/info/exclude` - your secrets are **impossible to commit**.
+- Never shows in `git status`
+- Never appears in commits
+- Zero risk of accidentally pushing API keys
 
-## Error Handling
+### 📁 **Smart Folder Structure**
+Auto-created on first initialization:
+```
+.admin-local/
+  ├── .ai.store            # AI API keys (OpenAI, Anthropic, etc.)
+  ├── prompts/             # Your prompt library
+  │   └── example-code-review.md
+  ├── scripts/             # Helper scripts & automation
+  └── README.md            # Usage guide
+```
 
-The extension handles common edge cases:
+### 🎯 **Right-Click Everything**
+All commands in Explorer context menu:
+- **Initialize** - Create folder structure
+- **Export Archive** - Save as portable .admloc file
+- **Import Archive** - Restore from .admloc
+- **Delete Folder** - Clean removal
 
-- ❌ **No workspace open** - Shows error message
-- ❌ **Not a Git repository** - Shows error message  
-- ❌ **Permission issues** - Shows detailed error message
-- ❌ **`.admin-local` is a file** - Shows error if name conflict exists
-- ✅ **Already initialized** - Shows success message without duplicating entries
+## 🚀 Quick Start
 
-## Installation
+**Right-click in Explorer** → **Admin Local: Initialize**
 
-### From VSIX file (Private/Team Distribution)
+Or use Command Palette (`Ctrl+Shift+P`):
+```
+Admin Local: Initialize
+Admin Local: Export Archive
+Admin Local: Import Archive
+Admin Local: Delete Folder
+```
 
-1. Download the `.vsix` file
-2. Open VS Code
-3. Go to Extensions view (`Ctrl+Shift+X`)
-4. Click the `...` menu → **Install from VSIX...**
-5. Select the downloaded `.vsix` file
+## 📖 Use Cases
 
-### From VS Code Marketplace (Once Published)
+### AI Development Workflows
+```bash
+.admin-local/.ai.store         # Store OpenAI/Anthropic API keys
+.admin-local/prompts/          # Build your prompt library
+.admin-local/scripts/llm-test.sh  # Test scripts for AI APIs
+```
 
-1. Open Extensions view (`Ctrl+Shift+X`)
-2. Search for "Admin Local"
-3. Click **Install**
+### AWS & Cloud Development
+```bash
+.admin-local/.aws-credentials  # IAM keys
+.admin-local/scripts/deploy.sh # Deployment scripts
+```
 
-## Development
+### Database Work
+```bash
+.admin-local/.db-passwords     # Connection strings
+.admin-local/scripts/seed.sql  # Test data
+```
 
-### Build from source
+## 💾 Export/Import
+
+**Export** your .admin-local folder to move between projects:
+1. Right-click → **Admin Local: Export Archive**
+2. Saves as `project-name-admin-local-2026-03-30T12-30-45.admloc`
+3. Timestamped, zipped, ready to share (safely!)
+
+**Import** to restore or copy to another project:
+1. Right-click → **Admin Local: Import Archive**
+2. Select your `.admloc` file
+3. All files restored to `.admin-local/`
+
+## 🔐 Security
+
+- ✅ **Never committed** - Uses .git/info/exclude (local-only)
+- ✅ **Team-safe** - Zero impact on other developers
+- ✅ **Export control** - Only you decide what to export/import
+- ✅ **No telemetry** - Your data stays on your machine
+
+## 📋 Requirements
+
+- VS Code 1.109.0+
+- Git repository
+- Git installed
+
+## 📦 Installation
+
+**Option 1: VSIX File**
+1. Extensions (`Ctrl+Shift+X`) → `...` → **Install from VSIX**
+
+**Option 2: Marketplace** (coming soon)
+1. Search "Admin Local" in Extensions
+
+## 🛠️ For Developers
 
 ```bash
-# Install dependencies
-npm install
-
-# Compile TypeScript
-npm run compile
-
-# Watch mode for development
-npm run watch
+npm install      # Install dependencies
+npm run compile  # Build
+npm run watch    # Dev mode
+vsce package     # Create .vsix
 ```
 
-### Test the extension
+## 📄 License
 
-1. Open this project in VS Code
-2. Press `F5` to launch Extension Development Host
-3. In the new window, open a Git repository
-4. Run **Admin Local: Initialize** from Command Palette
-5. Verify `.admin-local` folder and `.git/info/exclude` entry
+MIT - Created by Shaun Allen Pritchard
 
-### Package as VSIX
+## 🤝 Contributing
 
-```bash
-# Install vsce if you haven't already
-npm install -g @vscode/vsce
+Issues and PRs welcome! Visit [GitHub](https://github.com/your-username/admin-local-vscode)
 
-# Package the extension
-npx @vscode/vsce package
+---
 
-# This creates admin-local-0.0.1.vsix
-```
-
-## How is this different from .gitignore?
-
-| Feature | `.gitignore` | `.git/info/exclude` (Admin Local) |
-|---------|-------------|-----------------------------------|
-| **Scope** | Whole team/repo | Only your local machine |
-| **Committed** | Yes, tracked by Git | No, stays local |
-| **Use case** | Project-wide ignore rules | Personal/sensitive files |
-| **Team impact** | Affects everyone | Affects only you |
-
-## Platform Support
-
-✅ **Windows** - Fully supported (Git Bash/WSL recommended for scripts)  
-✅ **macOS** - Fully supported  
-✅ **Linux** - Fully supported  
-✅ **Remote/WSL** - Supported
-
-## License
-
-MIT License - see [LICENSE](LICENSE) file for details
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit issues or pull requests.
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for version history.
-
-## Support
+**Admin Local** - Because your AI keys belong to you, not Git.
 
 If you encounter issues:
 

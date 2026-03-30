@@ -1,21 +1,25 @@
 {
   "name": "admin-local",
   "displayName": "Admin Local",
-  "description": "Create a local-only .admin-local folder and ignore it through .git/info/exclude",
+  "description": "Portable AI toolkit - Export/import API keys, prompts & scripts between projects. Never commit secrets to Git.",
   "version": "0.0.1",
   "publisher": "frontside",
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.109.0"
   },
-  "categories": ["Other"],
+  "categories": [
+    "Other"
+  ],
   "keywords": [
+    "ai",
+    "api-keys",
+    "prompts",
+    "security",
     "git",
-    "ignore",
     "local",
-    "admin",
-    "exclude",
-    "workspace"
+    "secrets",
+    "workflow"
   ],
   "repository": {
     "type": "git",
@@ -27,20 +31,60 @@
     "commands": [
       {
         "command": "admin-local.init",
-        "title": "Admin Local: Initialize",
+        "title": "Initialize",
+        "category": "Admin Local",
         "icon": "$(lock)"
+      },
+      {
+        "command": "admin-local.delete",
+        "title": "Delete Folder",
+        "category": "Admin Local",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "admin-local.export",
+        "title": "Export Archive",
+        "category": "Admin Local",
+        "icon": "$(export)"
+      },
+      {
+        "command": "admin-local.import",
+        "title": "Import Archive",
+        "category": "Admin Local",
+        "icon": "$(import)"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "admin-local.init",
-          "group": "navigation@100"
+          "group": "adminlocal@1"
+        },
+        {
+          "command": "admin-local.delete",
+          "group": "adminlocal@2"
+        },
+        {
+          "command": "admin-local.export",
+          "group": "adminlocal@3"
+        },
+        {
+          "command": "admin-local.import",
+          "group": "adminlocal@4"
         }
       ],
       "commandPalette": [
         {
           "command": "admin-local.init"
+        },
+        {
+          "command": "admin-local.delete"
+        },
+        {
+          "command": "admin-local.export"
+        },
+        {
+          "command": "admin-local.import"
         }
       ]
     }
@@ -53,8 +97,14 @@
     "lint": "echo 'No linter configured yet'"
   },
   "devDependencies": {
+    "@types/archiver": "^7.0.0",
+    "@types/extract-zip": "^2.0.0",
     "@types/node": "^22.0.0",
     "@types/vscode": "^1.109.0",
     "typescript": "^5.8.0"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "extract-zip": "^2.0.1"
   }
 }
