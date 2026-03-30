@@ -1,0 +1,60 @@
+{
+  "name": "admin-local",
+  "displayName": "Admin Local",
+  "description": "Create a local-only .admin-local folder and ignore it through .git/info/exclude",
+  "version": "0.0.1",
+  "publisher": "frontside",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": ["Other"],
+  "keywords": [
+    "git",
+    "ignore",
+    "local",
+    "admin",
+    "exclude",
+    "workspace"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/admin-local-vscode"
+  },
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "admin-local.init",
+        "title": "Admin Local: Initialize",
+        "icon": "$(lock)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "admin-local.init",
+          "group": "navigation@100"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "admin-local.init"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "echo 'No linter configured yet'"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.109.0",
+    "typescript": "^5.8.0"
+  }
+}

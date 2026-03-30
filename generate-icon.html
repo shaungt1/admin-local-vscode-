@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Generate Icon</title>
+</head>
+<body>
+    <canvas id="canvas" width="128" height="128"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Background
+        ctx.fillStyle = '#007ACC';
+        ctx.fillRect(0, 0, 128, 128);
+        
+        // Folder emoji or text
+        ctx.font = 'bold 60px Arial';
+        ctx.fillStyle = '#FFFFFF';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('📁', 64, 50);
+        
+        // Lock
+        ctx.font = 'bold 40px Arial';
+        ctx.fillText('🔒', 64, 95);
+        
+        // Download instructions:
+        // Right-click on canvas → Save image as → icon.png
+        console.log('Right-click on the canvas and save as icon.png');
+    </script>
+    <p>Right-click on the blue square above and save as "icon.png" (128x128)</p>
+</body>
+</html>
