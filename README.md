@@ -1,33 +1,61 @@
 # Admin Local
 
-> **Your AI toolkit travels with you** - One-click portable workspace for API keys, prompts, and dev tools across all your projects.
-
-[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)](https://github.com/your-username/admin-local-vscode)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-
-## 🚀 Start New Projects in Seconds
-
-Stop wasting time copying API keys, hunting for that perfect prompt, or recreating scripts. **Admin Local** lets you **export your entire AI workflow** from one project and **import it into any other** - instantly.
-
-### The Problem
-Starting a new project means:
-- ❌ Searching for API keys in old projects
-- ❌ Copy-pasting prompts from Notion/docs
-- ❌ Recreating helper scripts you already wrote
-- ❌ Losing 15-30 minutes on setup every time
-
-### The Solution
-**Admin Local** creates a `.admin-local` folder in each project with:
-- 🔑 **AI API Keys** - OpenAI, Anthropic, Gemini (never committed to Git)
-- 💡 **Prompt Library** - Your best prompts, ready to drag into VS Code Chat
-- 📜 **Scripts & Tools** - AWS scripts, DB helpers, automation
-- 📦 **One-Click Export/Import** - Move your entire toolkit between projects
+**Export/import your AI keys, prompts, and scripts between projects. Never commit secrets to Git.**
 
 ![Admin Local Structure](img/admin-local.png)
 
-## ✨ Features
+## Why?
 
-### � **Export/Import Archives** (The Game Changer)
+**Save 30 minutes every new project.** Stop hunting for API keys or recreating scripts. Export from one project, import to another.
+
+## What You Get
+
+Right-click menu with 4 commands:
+- **Initialize** - Creates `.admin-local` folder (Git-ignored, local-only)
+- **Export** - Zip everything to timestamped `.admloc` file
+- **Import** - Restore from `.admloc` file
+- **Delete** - Remove folder
+
+**Folder structure:**
+```
+.admin-local/
+  ├── .ai.store           # API keys (OpenAI, Anthropic, etc.)
+  ├── prompts/            # Reusable prompts
+  └── scripts/            # Helper scripts
+```
+
+## How It Works
+
+**Workflow:**  
+Project A: Initialize → Add keys/prompts → Export → `project-a-admin-local-2026-03-30.admloc`  
+Project B: Initialize → Import → Select `.admloc` → Done
+
+**Security:** Uses `.git/info/exclude` (local Git ignore). Impossible to commit. Zero team impact.
+
+## Use Cases
+
+**AI Development:** API keys, prompt templates, test scripts  
+**AWS/Cloud:** IAM credentials, deployment scripts  
+**Database:** Connection strings, seed data  
+**Any Project:** Secrets that shouldn't be in `.gitignore`
+
+## Installation
+
+**From VSIX:**  
+Extensions → `...` → Install from VSIX → Select `admin-local-0.0.1.vsix`
+
+**From Marketplace** (coming soon):  
+Search "Admin Local"
+
+## Requirements
+
+VS Code 1.109.0+ • Git repository • Git installed
+
+---
+
+**MIT License** | Created by Shaun Allen Pritchard
+
+
 **The reason this extension exists:** Move your workflow between projects effortlessly.
 
 **Export** from a finished project:
