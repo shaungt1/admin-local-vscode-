@@ -2,11 +2,19 @@
 
 **Export/import your AI keys, prompts, and scripts between projects. Never commit secrets to Git.**
 
-![Admin Local Structure](img/admin-local.png)
-
 ## Why?
 
 **Save 30 minutes every new project.** Stop hunting for API keys or recreating scripts. Export from one project, import to another.
+
+**Folder structure created:**
+```
+.admin-local/
+  ├── .ai.store          # OpenAI, Anthropic, Gemini, etc.
+  ├── prompts/
+  │   └── example-code-review.md
+  ├── scripts/
+  └── README.md
+```
 
 ## What You Get
 
@@ -15,14 +23,6 @@ Right-click menu with 4 commands:
 - **Export** - Zip everything to timestamped `.admloc` file
 - **Import** - Restore from `.admloc` file
 - **Delete** - Remove folder
-
-**Folder structure:**
-```
-.admin-local/
-  ├── .ai.store           # API keys (OpenAI, Anthropic, etc.)
-  ├── prompts/            # Reusable prompts
-  └── scripts/            # Helper scripts
-```
 
 ## How It Works
 
