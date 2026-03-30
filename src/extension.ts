@@ -377,6 +377,71 @@ Provide specific, actionable suggestions.
   });
 
   context.subscriptions.push(importCommand);
+
+  // Copy Prompt command
+  const copyPromptCommand = vscode.commands.registerCommand('admin-local.copyPrompt', async () => {
+    try {
+      const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+      
+      if (!workspaceFolder) {
+        vscode.window.showErrorMessage('Admin Local: No workspace folder is open.');
+        return;
+      }
+
+      const rootPath = workspaceFolder.uri.fsPath;
+      const adminLocalPath = path.join(rootPath, '.admin-local');
+      const promptsPath = path.join(adminLocalPath, 'prompts');
+
+      if (!fs.existsSync(promptsPath)) {
+        vscode.window.showErrorMessage('Admin Local: Prompts folder does not exist. Initialize Admin Local first.');
+        return;
+      }
+
+      // Read all .md files from prompts folder
+      const files = fs.readdirSync(promptsPath)
+        .filter(file => file.endsWith('.md'))
+        .sort();
+
+      if (files.length === 0) {
+        vscode.window.showInformationMessage('Admin Local: No prompts found in prompts folder.');
+        return;
+      }
+
+      // Show Quick Pick menu
+      const selected = await vscode.window.showQuickPick(
+        files.map(file => ({
+          label: file,
+          description: path.join('.admin-local', 'prompts', file)
+        })),
+        {
+          placeHolder: 'Select a prompt to copy to clipboard',
+          title: 'Admin Local Prompts'
+        }
+      );
+
+      if (!selected) {
+        return;
+      }
+
+      // Read file content
+      const filePath = path.join(promptsPath, selected.label);
+      const content = fs.readFileSync(filePath, 'utf8');
+
+      // Copy to clipboard
+      await vscode.env.clipboard.writeText(content);
+
+      vscode.window.showInformationMessage(
+        `Admin Local: Copied "${selected.label}" to clipboard. Press Ctrl+V to paste.`
+      );
+
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      vscode.window.showErrorMessage(`Admin Local copy prompt failed: ${message}`);
+      console.error('Admin Local copy prompt error:', error);
+    }
+  });
+
+  context.subscriptions.push(copyPromptCommand);
 }
 
 /**

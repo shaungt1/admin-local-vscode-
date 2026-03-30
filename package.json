@@ -52,6 +52,12 @@
         "title": "(.Admin-Local) Import",
         "category": "Admin Local",
         "icon": "$(import)"
+      },
+      {
+        "command": "admin-local.copyPrompt",
+        "title": "(.Admin-Local) Copy Prompt to Clipboard",
+        "category": "Admin Local",
+        "icon": "$(copy)"
       }
     ],
     "menus": {
@@ -71,6 +77,10 @@
         {
           "command": "admin-local.import",
           "group": "adminlocal@4"
+        },
+        {
+          "command": "admin-local.copyPrompt",
+          "group": "adminlocal@5"
         }
       ],
       "commandPalette": [
