@@ -1,59 +1,291 @@
 # Admin Local
 
-**Export/import your AI keys, prompts, and scripts between projects. Never commit secrets to Git.**
+### Portable AI workflow toolkit for developers
 
-## Why?
-
-**Save 30 minutes every new project.** Stop hunting for API keys or recreating scripts. Export from one project, import to another.
-
-**Folder structure created:**
-```
-.admin-local/
-  ├── .ai.store          # OpenAI, Anthropic, Gemini, etc.
-  ├── prompts/
-  │   └── example-code-review.md
-  ├── scripts/
-  └── README.md
-```
-
-## What You Get
-
-Right-click menu with 4 commands:
-- **Initialize** - Creates `.admin-local` folder (Git-ignored, local-only)
-- **Export** - Zip everything to timestamped `.admloc` file
-- **Import** - Restore from `.admloc` file
-- **Delete** - Remove folder
-
-## How It Works
-
-**Workflow:**  
-Project A: Initialize → Add keys/prompts → Export → `project-a-admin-local-2026-03-30.admloc`  
-Project B: Initialize → Import → Select `.admloc` → Done
-
-**Security:** Uses `.git/info/exclude` (local Git ignore). Impossible to commit. Zero team impact.
-
-## Use Cases
-
-**AI Development:** API keys, prompt templates, test scripts  
-**AWS/Cloud:** IAM credentials, deployment scripts  
-**Database:** Connection strings, seed data  
-**Any Project:** Secrets that shouldn't be in `.gitignore`
-
-## Installation
-
-**From VSIX:**  
-Extensions → `...` → Install from VSIX → Select `admin-local-0.0.1.vsix`
-
-**From Marketplace** (coming soon):  
-Search "Admin Local"
-
-## Requirements
-
-VS Code 1.109.0+ • Git repository • Git installed
+**Export and import API keys, prompts, and scripts between projects without committing secrets to Git.**
 
 ---
 
-**MIT License** | Created by Shaun Allen Pritchard
+## Purpose
+
+Admin Local solves a critical problem in modern development: **managing sensitive configuration across multiple projects without compromising security.**
+
+Every developer working with AI APIs, cloud services, or databases faces the same challenge. You need API keys, prompts, deployment scripts, and credentials available in each project—but you cannot commit them to Git. The result is wasted time recreating configurations, hunting for keys in old projects, or worse, accidentally committing secrets.
+
+This extension provides a **Git-safe, portable solution** for keeping your development workflow consistent across all projects.
+
+---
+
+## How It Works
+
+### The `.admin-local` Folder
+
+Admin Local creates a dedicated folder in your workspace that is automatically excluded from Git tracking using `.git/info/exclude`.
+
+**This means:**
+- Your secrets never appear in `git status`
+- Impossible to accidentally commit sensitive data
+- No impact on your team—changes stay local to your machine
+- No `.gitignore` pollution or merge conflicts
+
+### Folder Structure
+
+When you initialize Admin Local, it creates:
+
+```
+.admin-local/
+  ├── README.md                    # Usage documentation
+  ├── .ai.store                    # API keys (OpenAI, Anthropic, Gemini, Cohere, HuggingFace)
+  ├── prompts/
+  │   └── example-code-review.md   # Starter prompt template
+  └── scripts/                     # Custom automation scripts
+```
+
+Everything inside `.admin-local` is yours to customize. Add credentials, build your prompt library, store deployment scripts—it stays local and secure.
+
+### Export/Import Workflow
+
+**Export** creates a timestamped `.admloc` archive:
+
+```
+project-name-admin-local-2026-03-30T14-25-10.admloc
+```
+
+**Import** restores your complete configuration:
+
+1. Start a new project
+2. Import your `.admloc` file
+3. Instant access to all your API keys, prompts, and tools
+
+**Save 30+ minutes per project** by eliminating manual setup.
+
+---
+
+## Commands
+
+All commands available via right-click context menu in Explorer or Command Palette (`Ctrl+Shift+P`).
+
+### (.Admin-Local) Initialize
+
+Creates the `.admin-local` folder structure in your workspace and adds it to `.git/info/exclude`.
+
+**Requirements:**
+- Workspace must be open
+- Git repository must exist (`.git` folder)
+
+**Creates:**
+- `.admin-local/` folder with subdirectories
+- `.ai.store` file with API key template
+- `prompts/` directory with example prompt
+- `scripts/` directory for automation
+- `README.md` with usage instructions
+
+---
+
+### (.Admin-Local) Export
+
+Creates a timestamped, compressed `.admloc` archive of your `.admin-local` folder.
+
+**File format:** `<project-name>-admin-local-<timestamp>.admloc`
+
+**Use cases:**
+- Backup your configuration
+- Share keys/prompts across your own projects
+- Version control your workflow tools (outside Git)
+
+---
+
+### (.Admin-Local) Import
+
+Restores a `.admin-local` folder from an exported `.admloc` archive.
+
+**Behavior:**
+- Prompts for confirmation if folder already exists
+- Extracts all files to `.admin-local/`
+- Preserves directory structure
+
+**Warning:** Importing will overwrite existing files in `.admin-local/`.
+
+---
+
+### (.Admin-Local) Destroy
+
+Permanently deletes the `.admin-local` folder and all its contents.
+
+**Behavior:**
+- Requires confirmation before deletion
+- Cannot be undone
+- Does not remove entry from `.git/info/exclude`
+
+---
+
+## Use Cases
+
+### AI Development
+
+Store API keys, prompt libraries, and testing scripts for OpenAI, Anthropic, Gemini, Cohere, and other AI services.
+
+**Example:**
+```
+.admin-local/
+  ├── .ai.store
+  ├── prompts/
+  │   ├── code-review.md
+  │   ├── documentation-generator.md
+  │   └── test-case-writer.md
+  └── scripts/
+      └── llm-benchmark.sh
+```
+
+### Cloud Development (AWS, Azure, GCP)
+
+Manage IAM credentials, deployment scripts, and environment-specific configurations.
+
+**Example:**
+```
+.admin-local/
+  ├── .aws-credentials
+  ├── scripts/
+  │   ├── deploy-staging.sh
+  │   └── deploy-production.sh
+  └── terraform-vars.tfvars
+```
+
+### Database Work
+
+Store connection strings, authentication tokens, and seed data scripts.
+
+**Example:**
+```
+.admin-local/
+  ├── .db-passwords
+  └── scripts/
+      ├── seed-dev-data.sql
+      └── reset-local-db.sh
+```
+
+---
+
+## Security Model
+
+### Git Exclusion
+
+Admin Local uses `.git/info/exclude` instead of `.gitignore`.
+
+**`.gitignore`:**
+- Committed to repository
+- Shared with team
+- Visible in Git history
+- Can be accidentally removed
+
+**`.git/info/exclude`:**
+- Local-only configuration
+- Never committed or shared
+- Invisible to other developers
+- Cannot be accidentally pushed
+
+Your `.admin-local` folder is **impossible to commit**, even by mistake.
+
+### No Telemetry
+
+This extension does not collect, transmit, or store any data. Your API keys, secrets, and configurations never leave your machine.
+
+### Export Control
+
+You control what gets exported. Only files inside `.admin-local/` are included in `.admloc` archives.
+
+---
+
+## Installation
+
+### From VSIX File
+
+1. Open VS Code
+2. Go to Extensions (`Ctrl+Shift+X`)
+3. Click `...` (More Actions) → **Install from VSIX**
+4. Select `admin-local-0.0.1.vsix`
+
+### From Marketplace (Coming Soon)
+
+1. Open Extensions (`Ctrl+Shift+X`)
+2. Search **"Admin Local"**
+3. Click **Install**
+
+---
+
+## Requirements
+
+- VS Code version 1.109.0 or higher
+- Git repository initialized in workspace
+- Git CLI installed and available in PATH
+
+---
+
+## Troubleshooting
+
+**"No workspace folder is open"**  
+Solution: Open a folder in VS Code before running Admin Local commands.
+
+**"Not a Git repository"**  
+Solution: Initialize Git in your workspace: `git init`
+
+**"Permission denied" errors**  
+Solution: Ensure you have write permissions to the workspace directory.
+
+**Commands not visible in right-click menu**  
+Solution: Reload VS Code window (`Ctrl+Shift+P` → "Developer: Reload Window").
+
+**Advanced debugging:**  
+Open VS Code Developer Tools: Help → Toggle Developer Tools (`Ctrl+Shift+I`)  
+Check the Console tab for error messages.
+
+---
+
+## For Developers
+
+### Build from Source
+
+```bash
+git clone https://github.com/your-username/admin-local-vscode
+cd admin-local-vscode
+npm install
+npm run compile
+```
+
+### Development Workflow
+
+```bash
+npm run watch    # Watch mode for development
+```
+
+Press **F5** to launch Extension Development Host.
+
+### Package Extension
+
+```bash
+npm install -g @vscode/vsce
+vsce package --no-git-tag-version
+```
+
+Outputs: `admin-local-0.0.1.vsix`
+
+---
+
+## Contributing
+
+Issues and pull requests welcome.  
+**Repository:** [GitHub](https://github.com/your-username/admin-local-vscode)
+
+---
+
+## License
+
+MIT License  
+**Created by Shaun Allen Pritchard**
+
+---
+
+**Admin Local** — Because your secrets belong to you, not Git.
 
 
 **The reason this extension exists:** Move your workflow between projects effortlessly.

@@ -31,25 +31,25 @@
     "commands": [
       {
         "command": "admin-local.init",
-        "title": "Initialize",
+        "title": "(.Admin-Local) Initialize",
         "category": "Admin Local",
         "icon": "$(lock)"
       },
       {
         "command": "admin-local.delete",
-        "title": "Delete Folder",
+        "title": "(.Admin-Local) Destroy",
         "category": "Admin Local",
         "icon": "$(trash)"
       },
       {
         "command": "admin-local.export",
-        "title": "Export Archive",
+        "title": "(.Admin-Local) Export",
         "category": "Admin Local",
         "icon": "$(export)"
       },
       {
         "command": "admin-local.import",
-        "title": "Import Archive",
+        "title": "(.Admin-Local) Import",
         "category": "Admin Local",
         "icon": "$(import)"
       }
