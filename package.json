@@ -1,7 +1,7 @@
 {
   "name": "admin-local",
   "displayName": "Admin Local",
-  "description": "Portable AI toolkit - Export/import API keys, prompts & scripts between projects. Never commit secrets to Git.",
+  "description": "Modular AI toolbox for multi-project developers and vibe-coders. Creates a private .admin-local workspace for API keys, prompts, scripts, and developer tools — Git-safe, Git-excluded, and portable between projects.",
   "version": "0.0.1",
   "publisher": "shaun.pritchard",
   "icon": "icon.png",
@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/admin-local-vscode"
+    "url": "https://github.com/shaungt1/admin-local-vscode-"
   },
   "activationEvents": [],
   "main": "./dist/extension.js",

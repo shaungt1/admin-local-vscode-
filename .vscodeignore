@@ -1,5 +1,6 @@
 .vscode
 .vscode-test
+.claude
 src
 .gitignore
 tsconfig.json
@@ -8,5 +9,16 @@ node_modules
 .eslintrc.json
 **/*.map
 **/*.ts
+**/*.psd
 img/designs
 create_icon.html
+generate-icon.html
+build.bat
+build.sh
+package-extension.bat
+package-extension.sh
+INDEX.md
+PROJECT-STATUS.md
+QUICKSTART.md
+SETUP.md
+TESTING.md
