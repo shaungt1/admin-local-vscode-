@@ -70,6 +70,16 @@ Permanently deletes `.admin-local` folder (confirmation required).
 
 ---
 
+## Custom File Type
+
+Admin Local uses a custom `.admloc` archive format for portable export and import.
+
+![Custom File Type](img/admin-local-custom-file-type.png)
+
+Archives are timestamped and zipped: `project-name-admin-local-2026-03-31T20-19-44.admloc`
+
+---
+
 ## Quick Start
 
 1. **Right-click in Explorer** → `(.Admin-Local) Initialize`
