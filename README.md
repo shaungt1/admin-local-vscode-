@@ -62,7 +62,9 @@ Restores from `.admloc` archive.
 
 ### (.Admin-Local) Copy Prompt to Clipboard
 
-Opens searchable list of prompts. Select → copy to clipboard → paste into VS Code Chat.
+Opens a searchable prompt picker at the top of VS Code. Select a prompt → copied to clipboard → paste directly into VS Code Chat or any AI tool.
+
+![Copy Prompt to Clipboard](img/admin-local-copy-prompts-to-chat-ai.png)
 
 ### (.Admin-Local) Destroy
 
