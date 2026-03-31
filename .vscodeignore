@@ -5,7 +5,8 @@ src
 .gitignore
 tsconfig.json
 *.vsix
-node_modules
+node_modules/.bin
+node_modules/@types
 .eslintrc.json
 **/*.map
 **/*.ts
