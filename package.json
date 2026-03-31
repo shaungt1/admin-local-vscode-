@@ -2,7 +2,7 @@
   "name": "admin-local",
   "displayName": "Admin Local",
   "description": "Modular AI toolbox for multi-project developers and vibe-coders. Creates a private .admin-local workspace for API keys, prompts, scripts, and developer tools — Git-safe, Git-excluded, and portable between projects.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "shaun-pritchard",
   "icon": "icon.png",
   "engines": {
