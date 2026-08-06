@@ -2,16 +2,22 @@
 
 ## What You Have
 
-A **production-ready VS Code extension** that creates a local-only `.admin-local` folder and ensures Git ignores it through `.git/info/exclude`.
+A **production-ready VS Code extension** that gives every Git repository a local-only `.admin-local` workbench (Git-ignored via `.git/info/exclude`), linked to one centralized, computer-wide **Admin Local Shared Toolbox** for reusable prompts, scripts, docs, and skills.
 
 ## 📁 Project Structure
 
 ```
 admin-local-vscode/
 ├── 📄 package.json              Main extension manifest
-├── 📄 tsconfig.json             TypeScript configuration
+├── 📄 tsconfig.json             TypeScript configuration (src build)
+├── 📄 tsconfig.test.json        TypeScript configuration (test build)
 ├── 📁 src/
-│   └── 📄 extension.ts          Extension source code
+│   ├── 📄 extension.ts          Composition root: builds services, registers commands
+│   ├── 📄 constants.ts          Shared naming/schema constants
+│   ├── 📄 types.ts              Shared TypeScript types
+│   ├── 📁 services/             Filesystem, Git, state, archive, migration logic
+│   └── 📁 commands/             One module per VS Code command
+├── 📁 test/                     Automated tests (node:test) for the services
 ├── 📁 .vscode/
 │   ├── 📄 launch.json           Debug configuration
 │   ├── 📄 tasks.json            Build tasks
@@ -52,9 +58,17 @@ npm install
 npm run compile
 ```
 
-This creates `dist/extension.js` from `src/extension.ts`.
+This compiles all of `src/` (services + commands) into `dist/extension.js`.
 
-### 3️⃣ Test the Extension
+### 3️⃣ Run the Automated Tests
+
+```bash
+npm test
+```
+
+This runs the filesystem/Git/link/migration/archive service tests under Node's built-in test runner (no VS Code host required).
+
+### 4️⃣ Test the Extension Manually
 
 1. Open this project in VS Code
 2. Press `F5` (Start Debugging)
@@ -62,8 +76,9 @@ This creates `dist/extension.js` from `src/extension.ts`.
 4. In the new window:
    - Open any Git repository
    - Press `Ctrl+Shift+P`
-   - Run: **Admin Local: Initialize**
-5. Verify: `.admin-local/` folder is created and ignored by Git
+   - Run: **(.Admin-Local) Initialize**
+   - First time on the machine: accept the recommended Toolbox location (or pick your own)
+5. Verify: `.admin-local/` folder is created, ignored by Git, and `.admin-local/shared_toolbox` opens the Toolbox
 
 ✅ **It works!**
 

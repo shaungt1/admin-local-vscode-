@@ -1,8 +1,8 @@
 # ✅ Production-Ready VS Code Extension: Admin Local
 
-## 🎉 Status: COMPLETE & TESTED
+## 🎉 Status: v0.1.0 — Centralized Toolbox Architecture
 
-Your VS Code extension is **fully built, compiled, and ready for distribution**.
+As of v0.1.0, the extension has been refactored from a single 497-line `src/extension.ts` into `src/services/` and `src/commands/` modules, and gained a centralized, computer-wide **Admin Local Shared Toolbox** (see [README.md](README.md) and [CHANGELOG.md](CHANGELOG.md#010---2026-08-06) for the full architecture and command list). It is **built, automated-tested, and ready for distribution**. The sections below describe the original v0.0.x scaffold and are kept for build/package/publish mechanics, which are unchanged.
 
 ---
 

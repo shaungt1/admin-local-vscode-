@@ -1,7 +1,11 @@
 node_modules
 dist
+out-test
+test/*.js
+test/*.js.map
 *.vsix
 .vscode-test/
+.vscode-test-profile/
 *.log
 .DS_Store
 *.psd

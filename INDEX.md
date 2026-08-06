@@ -21,6 +21,12 @@ Welcome to the **Admin Local** VS Code extension! This index helps you find the 
 ### **...Understand What It Does**
 → Read **[README.md](README.md)** - User documentation
 
+### **...Know Exactly What Each Command Does**
+→ Read **[COMMANDS.md](COMMANDS.md)** - Full command-by-command reference
+
+### **...Publish or Update the Extension**
+→ Read **[PUBLISHING.md](PUBLISHING.md)** - Manual release steps and what users experience
+
 ### **...Test It Thoroughly**
 → Follow **[TESTING.md](TESTING.md)** - 10 test scenarios
 
@@ -83,11 +89,12 @@ admin-local-vscode/
 
 ### Key Features
 
-✅ Creates `.admin-local/` folder  
-✅ Adds to `.git/info/exclude` (local Git ignore)  
-✅ Never modifies `.gitignore`  
-✅ Comprehensive error handling  
-✅ Cross-platform (Windows/Mac/Linux)  
+✅ Private per-repository `.admin-local` workbench, Git-ignored via `.git/info/exclude`
+✅ One centralized, computer-wide Admin Local Shared Toolbox linked into every repository as `shared_toolbox`
+✅ Safe, one-time migration for repositories created by older versions
+✅ Never modifies `.gitignore`; never deletes a real file/folder automatically
+✅ Comprehensive error handling and an automated test suite
+✅ Cross-platform (Windows/Mac/Linux)
 ✅ Production-ready  
 
 ---

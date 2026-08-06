@@ -2,8 +2,11 @@
 .vscode-test
 .claude
 src
+test
+out-test
 .gitignore
 tsconfig.json
+tsconfig.test.json
 *.vsix
 node_modules/.bin
 node_modules/@types
@@ -23,3 +26,6 @@ PROJECT-STATUS.md
 QUICKSTART.md
 SETUP.md
 TESTING.md
+COMMANDS.md
+PUBLISHING.md
+.vscode-test-profile

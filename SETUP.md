@@ -30,9 +30,17 @@ This installs:
 npm run compile
 ```
 
-This compiles TypeScript files from `src/` to JavaScript in `dist/`.
+This compiles TypeScript files from `src/` (services + commands) to JavaScript in `dist/`.
 
-### 3. Test the Extension
+### 3. Run the Automated Test Suite
+
+```bash
+npm test
+```
+
+This compiles `src/` and `test/` with `tsconfig.test.json` and runs them under Node's built-in test runner (`node --test`). These tests exercise the filesystem/Git/link/migration/archive services directly — no VS Code host needed — and are the fastest way to catch a regression before manual testing.
+
+### 4. Test the Extension Manually
 
 1. Open this project in VS Code
 2. Press `F5` or go to `Run and Debug` view
@@ -41,10 +49,12 @@ This compiles TypeScript files from `src/` to JavaScript in `dist/`.
 5. In the new window:
    - Open a Git repository
    - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
-   - Run command: **Admin Local: Initialize**
+   - Run command: **(.Admin-Local) Initialize**
+   - First run on the machine: choose the recommended Toolbox location, another location, or an existing Toolbox
 6. Verify:
    - `.admin-local` folder is created
    - `.git/info/exclude` contains `.admin-local/`
+   - `.admin-local/shared_toolbox` opens the centralized Toolbox
 
 ### 4. Development Workflow
 
@@ -132,11 +142,18 @@ admin-local-vscode/
 │   ├── tasks.json           # Build tasks
 │   └── extensions.json      # Recommended extensions
 ├── src/                     # Source code
-│   └── extension.ts         # Main extension code
+│   ├── extension.ts         # Composition root
+│   ├── constants.ts         # Naming/schema constants
+│   ├── types.ts             # Shared types
+│   ├── services/            # Filesystem, Git, state, archive, migration logic
+│   └── commands/            # One module per command
+├── test/                    # Automated tests (node:test)
 ├── dist/                    # Compiled JavaScript (generated)
+├── out-test/                # Compiled test output (generated)
 ├── node_modules/            # Dependencies (generated)
 ├── package.json             # Extension manifest
-├── tsconfig.json            # TypeScript configuration
+├── tsconfig.json            # TypeScript configuration (src)
+├── tsconfig.test.json       # TypeScript configuration (test)
 ├── .gitignore              # Git ignore rules
 ├── .vscodeignore           # Files to exclude from VSIX
 ├── README.md               # User documentation
@@ -264,10 +281,9 @@ npx @vscode/vsce package
 
 ## Next Steps
 
-- Add unit tests
 - Set up ESLint for code quality
-- Add multi-root workspace support
-- Create extension settings/configuration
+- Add remote workspace support (SSH/Dev Containers/Codespaces/WSL) with an explicit Toolbox strategy
+- Add `.claude` skill install into the Toolbox as a separate, deliberate integration
 - Add telemetry (optional)
 
 ## Resources

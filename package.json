@@ -1,8 +1,8 @@
 {
   "name": "admin-local",
   "displayName": "Admin Local",
-  "description": "Modular AI toolbox for multi-project developers and vibe-coders. Creates a private .admin-local workspace for API keys, prompts, scripts, and developer tools — Git-safe, Git-excluded, and portable between projects.",
-  "version": "0.0.3",
+  "description": "Modular AI toolbox for multi-project developers and vibe-coders. Creates a private .admin-local workspace for API keys, prompts, scripts, and developer tools, linked to one centralized, computer-wide Admin Local Shared Toolbox — Git-safe and Git-excluded.",
+  "version": "0.1.0",
   "publisher": "shaun-pritchard",
   "icon": "icon.png",
   "engines": {
@@ -36,28 +36,76 @@
         "icon": "$(lock)"
       },
       {
-        "command": "admin-local.delete",
-        "title": "(.Admin-Local) Destroy",
+        "command": "admin-local.openToolbox",
+        "title": "(.Admin-Local) Open Toolbox",
         "category": "Admin Local",
-        "icon": "$(trash)"
+        "icon": "$(folder-opened)"
       },
       {
-        "command": "admin-local.export",
-        "title": "(.Admin-Local) Export",
+        "command": "admin-local.repairToolboxLink",
+        "title": "(.Admin-Local) Repair Toolbox Link",
         "category": "Admin Local",
-        "icon": "$(export)"
-      },
-      {
-        "command": "admin-local.import",
-        "title": "(.Admin-Local) Import",
-        "category": "Admin Local",
-        "icon": "$(import)"
+        "icon": "$(tools)"
       },
       {
         "command": "admin-local.copyPrompt",
         "title": "(.Admin-Local) Copy Prompt to Clipboard",
         "category": "Admin Local",
         "icon": "$(copy)"
+      },
+      {
+        "command": "admin-local.export",
+        "title": "(.Admin-Local) Export Project Workspace",
+        "category": "Admin Local",
+        "icon": "$(export)"
+      },
+      {
+        "command": "admin-local.import",
+        "title": "(.Admin-Local) Import Project Workspace",
+        "category": "Admin Local",
+        "icon": "$(import)"
+      },
+      {
+        "command": "admin-local.delete",
+        "title": "(.Admin-Local) Destroy Project Workspace",
+        "category": "Admin Local",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "admin-local.createToolbox",
+        "title": "(.Admin-Local) Create Toolbox",
+        "category": "Admin Local",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "admin-local.useExistingToolbox",
+        "title": "(.Admin-Local) Use Existing Toolbox",
+        "category": "Admin Local",
+        "icon": "$(folder-library)"
+      },
+      {
+        "command": "admin-local.setDefaultToolbox",
+        "title": "(.Admin-Local) Set Default Toolbox",
+        "category": "Admin Local",
+        "icon": "$(star-full)"
+      },
+      {
+        "command": "admin-local.changeToolbox",
+        "title": "(.Admin-Local) Change Toolbox Location",
+        "category": "Admin Local",
+        "icon": "$(replace)"
+      },
+      {
+        "command": "admin-local.exportToolbox",
+        "title": "(.Admin-Local) Export Toolbox",
+        "category": "Admin Local",
+        "icon": "$(archive)"
+      },
+      {
+        "command": "admin-local.importToolbox",
+        "title": "(.Admin-Local) Import Toolbox",
+        "category": "Admin Local",
+        "icon": "$(cloud-download)"
       }
     ],
     "menus": {
@@ -67,35 +115,44 @@
           "group": "2_adminlocal@1"
         },
         {
-          "command": "admin-local.delete",
+          "command": "admin-local.openToolbox",
           "group": "2_adminlocal@2"
         },
         {
-          "command": "admin-local.export",
+          "command": "admin-local.repairToolboxLink",
           "group": "2_adminlocal@3"
         },
         {
-          "command": "admin-local.import",
+          "command": "admin-local.copyPrompt",
           "group": "2_adminlocal@4"
         },
         {
-          "command": "admin-local.copyPrompt",
+          "command": "admin-local.export",
           "group": "2_adminlocal@5"
+        },
+        {
+          "command": "admin-local.import",
+          "group": "2_adminlocal@6"
+        },
+        {
+          "command": "admin-local.delete",
+          "group": "2_adminlocal@7"
         }
       ],
       "commandPalette": [
-        {
-          "command": "admin-local.init"
-        },
-        {
-          "command": "admin-local.delete"
-        },
-        {
-          "command": "admin-local.export"
-        },
-        {
-          "command": "admin-local.import"
-        }
+        { "command": "admin-local.init" },
+        { "command": "admin-local.openToolbox" },
+        { "command": "admin-local.repairToolboxLink" },
+        { "command": "admin-local.copyPrompt" },
+        { "command": "admin-local.export" },
+        { "command": "admin-local.import" },
+        { "command": "admin-local.delete" },
+        { "command": "admin-local.createToolbox" },
+        { "command": "admin-local.useExistingToolbox" },
+        { "command": "admin-local.setDefaultToolbox" },
+        { "command": "admin-local.changeToolbox" },
+        { "command": "admin-local.exportToolbox" },
+        { "command": "admin-local.importToolbox" }
       ]
     }
   },
@@ -103,6 +160,8 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
+    "compile:test": "tsc -p ./tsconfig.test.json",
+    "test": "npm run compile:test && node --test out-test/test",
     "pretest": "npm run compile",
     "lint": "echo 'No linter configured yet'"
   },
